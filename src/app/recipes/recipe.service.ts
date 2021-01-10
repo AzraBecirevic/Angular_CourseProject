@@ -12,7 +12,7 @@ export class RecipeService{
 
     recipesChanged = new Subject<Recipe[]>();
 
-    private recipes: Recipe[] = [
+    /*private recipes: Recipe[] = [
         new Recipe('A Test Recipe', 
         'This is simply a test', 
         'https://images2.minutemediacdn.com/image/upload/c_crop,h_1126,w_2000,x_0,y_181/f_auto,q_auto,w_1100/v1554932288/shape/mentalfloss/12531-istock-637790866.jpg',
@@ -28,11 +28,16 @@ export class RecipeService{
             new Ingredient('Bread',2),
             new Ingredient('Meat',1)
         ])
-    ];
+    ];*/
+    private recipes: Recipe[] = [];
 
     constructor(private shoppinglistService: ShoppingListService){}
 
 
+    setRecipes(recipes: Recipe[]){
+        this.recipes = recipes;
+        this.recipesChanged.next(this.recipes.slice());
+    }
 
     getRecipes(){
         return this.recipes.slice();
